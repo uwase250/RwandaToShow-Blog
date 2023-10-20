@@ -1,17 +1,26 @@
-import React from 'react'
-import Navbar from '../component/navbar'
-import Footer from '../component/footer'
 
-const Login = () => {
+import React, { useState } from "react";
+import {AiOutlineClose} from "react-icons/ai"
+function MyComponent() {
+  const [modal, setModal] = useState(false);
+  const handleModal = ()=>{
+    setModal(!modal)
+  }
+
   return (
     <div>
-    <Navbar />
-    <div className='login'>
-    <h1>LOGIN PAGE</h1>
+      <button onClick={handleModal}>Login</button>
+
+      {
+        modal && <div className="loginModal"> 
+        
+        <button onClick={handleModal} className="close"><AiOutlineClose/></button>
+        </div>
+    }
     </div>
-    <Footer/>
-    </div>
-  )
+  );
 }
 
-export default Login
+export default MyComponent;
+
+

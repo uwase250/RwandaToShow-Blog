@@ -1,14 +1,14 @@
-import  React,{ useEffect } from 'react'
-import  { useState } from 'react'
-import Navbar from '../component/navbar'
-import Card from '../component/card'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import Dnav from '../component/dash navbar'
 import Footer from '../component/footer'
-// import Blog from '../component/blog'
+import { Link } from 'react-router-dom'
+import InnerDashMenu from '../component/InnerDashMenu'
+import axios from 'axios'
+import Cardassh from '../component/card-dash'
 
 
-
-const Home = () => {
+  const Manageblog = () => {
+  
     const productsblogs = [
         {
             title: 'Chateau Le Marara',
@@ -57,6 +57,7 @@ const Home = () => {
         title: 'Nyungwe Forest',
         blogImage: 'https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
         content: 'This card is just for testing i will add more description This card is just for testing i will add more descriptionThis card is just for testing i will add more description This card is just for testing i will add more descriptionThis card is just for testing i will add more description'
+        
       },
    
       {
@@ -73,44 +74,41 @@ const Home = () => {
       }
 
     ]
+
     const [blogs,setBlog] = useState([]);
-    //console.log("hello",blogs)
+   // console.log("hello",blogs);
+
 
     useEffect(() => {
     const fecthImage = async () => {
       const response = await axios.get(
-       'https://blog-6hj4.onrender.com/api/post/select'
+        'https://blog-6hj4.onrender.com/api/post/select'
       );
       const data = response.data.data;
       setBlog(data);
       console.log(data);
     };
     fecthImage();
-  },
- []);
+  }, []);
 
-
-    return (
-        <div>
-            <Navbar />
-            <div className="hero">
-                <h1>Read<span> Our Blog</span></h1>
-            </div>
-            <section className="welcome">
-            <p>Where can I get some?
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. 
-            If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. 
-            All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. 
-            It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. 
-            The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-        </section>
-            <section className="grid-container">
-            {productsblogs && blogs.map((data, index)=>(
-            <Card key={index} Data={data}/>))}
-            </section>
-            <Footer className='footer-home'></Footer>
-        </div>
-    )
+  return (
+    <div>
+    <Dnav/>
+    <div className="hero-dashboard">
+       <h3>Manage<span> Blogs</span></h3>
+     </div>
+     <InnerDashMenu/>
+    <section className="grid-container">
+    {productsblogs && blogs.map((data, index)=>(
+    <Cardassh key={index} Data={data}/>
+     )
+     )}
+    </section>
+    <Footer />
+    </div>
+  )
+  
 }
 
-export default Home;
+
+export default Manageblog;
