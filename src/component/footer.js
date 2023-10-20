@@ -2,6 +2,7 @@ import React from 'react'
 
  const Footer = () =>{
   return (
+    <section className='footer-section'>
     <div className='footer-container'>
     <div className='footer-information'>
     <div className='connect'><h4>Let's Connect</h4><p>Email:uwasenelly2000@gmail.com</p></div>
@@ -13,6 +14,7 @@ import React from 'react'
 <p>All right reserved</p>
 </div>
     </div>
+    </section>
   )
 }
 export default Footer;
