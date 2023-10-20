@@ -80,8 +80,23 @@ const Navbar = () => {
         }
      }
 
-
-
+//form validation
+const validate = () =>{
+    let result=true;
+    if(first === '' || first ===null){
+        result=false;
+        toast.warning('please enter username');
+    }
+    if(email === '' || email ===null){
+        result=false;
+        toast.warning('please enter email');
+    }
+    if(password === '' || password ===null){
+        result=false;
+        toast.warning('please enter password');
+    }
+}
+return result;
 
 
 
