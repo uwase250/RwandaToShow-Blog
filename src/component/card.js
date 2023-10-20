@@ -11,7 +11,7 @@ const Card = ({name, image,description,link}) => {
       <h4>{name}</h4>
       <p>{description}</p>
       
-      <Button name="Read More" className='card-Button'/> 
+      <Button name="Read Moree" className='card-Button'/> 
     </div>
   )
 }
