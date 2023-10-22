@@ -80,24 +80,26 @@ const Navbar = () => {
         }
      }
 
-//form validation
-const validate = () =>{
-    let result=true;
-    if(first === '' || first ===null){
-        result=false;
-        toast.warning('please enter username');
-    }
-    if(email === '' || email ===null){
-        result=false;
-        toast.warning('please enter email');
-    }
-    if(password === '' || password ===null){
-        result=false;
-        toast.warning('please enter password');
-    }
-}
-return result;
-//no validation
+// //form validation
+// const validate = () =>{
+//     let result=true;
+//     if(first === '' || first ===null){
+//         result=false;
+//         toast.warning('please enter username');
+//     }
+//     if(email === '' || email ===null){
+//         result=false;
+//         toast.warning('please enter email');
+//     }
+//     if(password === '' || password ===null){
+//         result=false;
+//         toast.warning('please enter password');
+//     }
+//     return result;
+
+// }
+
+// //no validation
 
 
 
@@ -145,7 +147,7 @@ return result;
             <label htmlFor="">Password</label>
             <input type="password" placeholder='Password' onChange={(event) => setPassword(event.target.value)}/>
             </div>
-            <Link onSubmit={handleSubmit}><input type="submit"  value="Login"/></Link>
+            <Link to='/dashboard' className='login-link'><input type="submit"  value="Login"/></Link>
             
             </div>
             </div>

@@ -405,7 +405,7 @@ text-align: center;
 
 
 @media screen and (max-width:568px) {
-  
+
   nav .desktop-menu
   {
     display: none;
@@ -433,7 +433,19 @@ text-align: center;
     top: 81px;
     background: rgb(0, 0, 0);
     color:#E5BE01 ;
-    padding: 20px;
+  
+  }
+ 
+  nav{
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 45px;
+    position: fixed;
+    top:0;
+    align-items: center;
   }
   .hidden
   {
@@ -442,7 +454,6 @@ text-align: center;
 
   .hero {
     background-color: rgb(0, 0, 0);
-    width: 100%;
     height: 30vh;
     /* position: absolute; */
     display: flex;
@@ -456,6 +467,7 @@ text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-left: 0px;
     margin-right: 0px;
+    width: 100%;
   }
     .welcome p
     {
@@ -488,7 +500,7 @@ text-align: center;
         text-align: center;
         justify-content: center;
         color: white;
-        font-size: 12px;
+        font-size: 9px;
         border-radius: 5px;
         margin-top: 4rem;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -504,6 +516,45 @@ text-align: center;
         {
         width: 90%;
         }
+        
+        .form p
+        {
+          font-size: 8px;
+          text-align: center;
+        }
+        .inputController
+        {
+          display: flex;
+          flex-direction: column;
+        }
+        .inputController input[type="text"] ,input[type="password"],input[type="submit"]
+        {
+          outline: none;
+          border: none;
+          border-radius: 10px;
+          align-items: center;
+          display: flex;
+        }
+        .form.login-link
+        {
+          width: 100%;
+          padding: 0.4rem 0.7rem;
+        }
+  
+.container-foo .form-contact,.inputController input[type="text"] ,input[type="password"],input[type="submit"]
+{
+margin-right: 100%;
+justify-content: center;
+
+}
+.contact-all{
+  width: 100%;
+  display: flex;
+}
+.form-contact{
+  background-color: #E5BE01;
+}
+
     }
       
     
@@ -605,7 +656,7 @@ height: 100px;
   /* width: 500px; */
   margin: 0 auto;
   background-color: #bf9f11;
-  padding: 6rem 6rem;
+  padding: 6rem 2rem;
   display: flex;
   gap: 1rem;
   flex-direction: column;
