@@ -77,8 +77,6 @@ import Cardassh from '../component/card-dash'
 
     const [blogs,setBlog] = useState([]);
    // console.log("hello",blogs);
-
-
     useEffect(() => {
     const fecthImage = async () => {
       const response = await axios.get(
@@ -98,12 +96,10 @@ import Cardassh from '../component/card-dash'
        <h3>Manage<span> Blogs</span></h3>
      </div>
      <InnerDashMenu/>
-    <section className="grid-container">
-    {productsblogs && blogs.map((data, index)=>(
-    <Cardassh key={index} Data={data}/>
-     )
-     )}
-    </section>
+     <section className="grid-container">
+            {productsblogs && blogs.map((data, index)=>(
+            <Cardassh key={index} Data={data}/>))}
+            </section>
     <Footer />
     </div>
   )

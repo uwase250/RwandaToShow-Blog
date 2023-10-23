@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import {useEffect} from 'react';
 import Button from './button'
 import { Link } from 'react-router-dom';
 import {AiOutlineClose} from "react-icons/ai"
@@ -11,6 +12,29 @@ const handleModal = ()=>{
     console.log("hello modal");
   setModal(!modal)
 }
+
+
+// const BlogList = () => {
+//   const [blogs, setBlogs] = useState([]);
+
+//   useEffect(() => {
+//     fetch(`https://blog-6hj4.onrender.com/api/post/select`)
+//       .then((response) => response.json())
+//       .then((blogs) => setBlogs(blogs));
+//   }, []);
+
+//   const handleDeleteBlog = (id) => {
+//     fetch(`https://blog-6hj4.onrender.com/api/post/selectById/${id}`,
+//      {
+//       method: "DELETE",
+//     })
+//       .then((response) => response.json())
+//       .then(() => {
+//         const filteredBlogs = blogs.filter((blog) => blog.id !== id);
+//         setBlogs(filteredBlogs);
+//       });
+//   };
+
 
 
 
@@ -26,6 +50,7 @@ const handleModal = ()=>{
       <Link>Delete</Link>
       </div>
     </div>
+  
     {
         modal && <div className="loginModal"> 
         
@@ -47,5 +72,6 @@ const handleModal = ()=>{
     }
     </div>
   )
+  
 }
 export default Cardassh;
