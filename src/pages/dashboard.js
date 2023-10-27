@@ -3,6 +3,9 @@ import Dnav from '../component/dash navbar'
 import Footer from '../component/footer'
 import { Link } from 'react-router-dom'
 import InnerDashMenu from '../component/InnerDashMenu'
+import Dashcontent from '../component/dashcontent'
+import ReactDOM from 'react-dom';
+import Charts from '../component/charts'
 
 function Dashboard() {
   
@@ -31,6 +34,11 @@ function Dashboard() {
        </div>
       </div>
     </section>
+
+
+
+
+    
    <Footer/>
     </div>
   )

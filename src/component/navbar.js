@@ -93,6 +93,8 @@ const Navbar = () => {
             })
             .then(result => {
             console.log(result.data)
+            const token = localStorage.setItem("token",result.data.token)
+            console.log("tokennnnnnnn = ",token);
             alert('success logged in')
             navigate("/dashboard")
             })
@@ -101,8 +103,6 @@ const Navbar = () => {
                 console.log(error)
               })
           }
-        
-        
     
 
     return (

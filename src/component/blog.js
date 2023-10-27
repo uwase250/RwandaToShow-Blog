@@ -4,9 +4,43 @@ import Footer from '../component/footer'
 import Comment from '../component/comment'
 import { useParams } from 'react-router-dom';
 
+
+
 const Blog = () => {
+
+  const [comments, setComments] = useState([]);
+  const [post, setPost] = useState({});
+
+  const [newComment, setNewComment] = useState("");
+  const [error, setError] = useState(null);
+  const [first, setCommenterName] = useState(""); // State for commenter's name
   const { _id } = useParams();
   const [blogData, setBlogData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://blog-6hj4.onrender.com/api/post/selectById/${_id}`
+        );
+  
+        if (response.ok) {
+          const data = await response.json();
+          setPost(data.data);
+          setComments(data.data.comments || []);
+        } else {
+          setError("Failed to fetch post data");
+        }
+      } catch (error) {
+        setError("Error fetching post data: " + error.message);
+      }
+    };
+  
+    fetchData();
+  }, [_id]);
+  
+  
+
 
   useEffect(() => {
     fetch(`https://blog-6hj4.onrender.com/api/post/selectById/${_id}`)
@@ -46,51 +80,120 @@ const Blog = () => {
 
 ]
 
+
+ 
+
+
+const handleCommentChange = (e) => {
+  setNewComment(e.target.value);
+};
+
+const handleNameChange = (e) => {
+  setCommenterName(e.target.value);
+};
+const token = localStorage.getItem("token");
+console.log("Token", token);
+const headers = {
+Authorization: `Bearer ${token}`,
+}
+
+const handleCommentSubmit = async () => {
+  if (newComment.trim() !== "" && first.trim() !== "") {
+    try {
+      const response = await fetch(
+        `https://blog-6hj4.onrender.com/api/post/comment/${_id}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({  content: newComment}),
+        }
+      );
+
+      if (response.ok) {
+        const updatedComments = await response.json();
+        if (updatedComments.data && updatedComments.data.comments) {
+          setComments(updatedComments.data.comments);
+          setNewComment("");
+          setCommenterName("");
+          setError(null);
+          alert("Comment added successfully");
+        } 
+        else 
+        {
+          alert("Comment successfully added");
+        }
+      } 
+      else
+       {
+        setError("Failed to add comment to the database");
+       }
+     }
+     catch (error) 
+     {
+      setError("Error adding comment: " + error.message);
+    }
+  } 
+  else
+   {
+    setError("Name and comment cannot be empty");
+  }
+};
+
+
+
   return (
    <div>
    <Navbar />
 
    <section className='blog-section'>
    <div className='readmore-text'>
-   <h1>{blogData.title}</h1>
-   <img src={blogData.blogImage} className='read-moreimg' alt=""/>
-   <p>{blogData.content}</p>
+   <h1>{blogData.title}</h1><br></br>
+   <img src={blogData.postImage} className='read-moreimg' alt=""/><br></br>
+   <p>{blogData.content}</p><br></br>
    </div>
-
 </section>
-<section className="grad-container">
-<h1>Comments</h1>
-{commenting.map((comment, index)=>(
-<Comment key={index} name={comment.name} image={comment.image}  description={comment.description}/>
- )
- )}
 
- <div className="container-comment">
-       <div className="form-comment">
-       <h3>Leave a comment</h3>
-       <div className='inputController'>
-       <label htmlFor="">comment</label>
-
-       <textarea name="" id="" cols="30" rows="10"></textarea>
-       </div>
-       <div className='inputController'>
-       <label htmlFor="">Name</label>
-       <input type="text" placeholder='Your Name'/>
-       </div>
-       <div className='inputController'>
-       <label htmlFor="">Email</label>
-       <input type="text" placeholder='Your Email'/>
-       </div>
-      
-       <input type="submit" value="Post Comment"/>
-       </div>
-
-      </div>
-
-</section>
-<Footer />
+ <div className="comment-form">
+ <input
+   type="text"
+   value={first}
+   onChange={handleNameChange}
+   placeholder="Your Name"
+   className="comment-input"
+ />
+ <input
+   type="text"
+   value={newComment}
+   onChange={handleCommentChange}
+   placeholder="Add your comment..."
+   className="comment-input"
+ />
+ <button onClick={handleCommentSubmit} className="comment-button">
+   Comment
+ </button>
 </div>
-  );
+
+<div className="comments">
+ <h3>Comments</h3>
+ <ul className="comment-list">
+   {comments.map((comment, index) => (
+    <li key={index}>
+    <img src={ comment.author.profile} className='comment-image'/>
+    <h4>{comment.author.first}:</h4> 
+    <p className='comment-paragraph'>{comment.content} </p>
+     </li>
+     ))}
+    </ul>
+
+    {error && <p className="error-message">{error}</p>}
+    </div>
+    <div><Footer></Footer></div>
+    </div>
+  )
+
 
 }
 export default Blog;

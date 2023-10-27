@@ -4,11 +4,11 @@ import Footer from '../component/footer'
 import { Link } from 'react-router-dom'
 import InnerDashMenu from '../component/InnerDashMenu'
 import axios from 'axios'
-import Cardassh from '../component/card-dash'
+import Cardassh from '../component/card-dash';
 
 
   const Manageblog = () => {
-  
+    
     const productsblogs = [
         {
             title: 'Chateau Le Marara',
