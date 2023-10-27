@@ -8,9 +8,9 @@ const Card = ({Data}) => {
 
   return (
     <div className='card'>
-      <img src={Data.blogImage} alt="" className='location-image'/>
+      <img src={Data.postImage} alt="" className='location-image'/>
       <h4>{Data.title}</h4><br></br>
-      <p>{Data.content.substring(0, 300)}...</p><br></br>
+      <p>{Data.content.substring(0, 50)}...</p><br></br>
       <Link to={`/blog/${blogId}`}><Button name="Read More" className='card-Button'/></Link>
     </div>
   )

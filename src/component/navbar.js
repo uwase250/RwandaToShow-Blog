@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 import Button from "./button"
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from "axios";
+
 
 
 
@@ -11,11 +12,13 @@ const Navbar = () => {
     const handleModal = ()=>{
         console.log("hello modal");
       setModal(!modal)
+      setModale(false)
     }
     const [modale, setModale] = useState(false);
     const handleModale = ()=>{
         console.log("hello modal");
       setModale(!modale)
+      setModal(false)
     }
     const [mobileMenuOpen, setMobileMenuOpen] = useState(true)
     console.log("MENU OPEN", mobileMenuOpen)
@@ -23,84 +26,84 @@ const Navbar = () => {
 
 
       // Define state variables for the form fields
-      const [first, setName] = useState('');
+      const [first, setFirstname] = useState('');
+      const [lastname, setLastname] = useState('');
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
+      const [profile, setProfile] = useState('');
   
       const FormData = {
           first,
+          lastname,
           email,
           password,
+          profile,
       };
   
       const handlesignup = async (data) => {
           try {
-              const response = await fetch('https://blog-6hj4.onrender.com/api/user/signup', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
+              const response = await fetch('https://blog-6hj4.onrender.com/api/user/signup', 
+              {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify(data), // Use FormData directly without wrapping it in an object
+                body: JSON.stringify(data), // Use FormData directly without wrapping it in an object
               });
   
               if (response.ok) {
                   const data = await response.json();
                   console.log('Response:', data);
                   alert("Account Created Successfully")
-                  setName('')
+                  setFirstname('')
+                  setLastname('')
                   setEmail('')
                   setPassword('')
-              } else {
-                  console.error('Failed to create user.');
+                  setProfile('')
               }
-          } catch (error) {
+               else
+                {
+                  console.error('Failed to create user.');
+                }
+          } 
+          catch (error) 
+          {
               console.error('Error:', error);
           }
       };
 
-
-
-     
-     
-     const handleSubmit = async (event) =>{
-        event.preventDefault();
-        const response = await axios.post ('https://blog-6hj4.onrender.com/api/user/login', {
-            email,
-            password,
-        });
-        if(response.status === 200)
-        {
-            alert("You Logged in Successfully")
-            setEmail('')
-            setPassword('')
-        }
-        else
-        {
-            alert("Login Failed")
-        }
-     }
-
-//form validation
-const validate = () =>{
-    let result=true;
-    if(first === '' || first ===null){
-        result=false;
-        toast.warning('please enter username');
-    }
-    if(email === '' || email ===null){
-        result=false;
-        toast.warning('please enter email');
-    }
-    if(password === '' || password ===null){
-        result=false;
-        toast.warning('please enter password');
-    }
-}
-return result;
-//no validation
-
-
-
+    
+        const navigate  = useNavigate()
+          console.log({ email, password })
+    
+          const handleEmail = (e) => {
+            setEmail(e.target.value)
+          }
+        
+          const handlePassword = (e) => {
+            setPassword(e.target.value)
+          }
+        
+          const handleApi = () => {
+            console.log({ email, password })
+            axios.post('https://blog-6hj4.onrender.com/api/user/login',
+             {
+              email: email,
+              password: password
+            })
+            .then(result => {
+            console.log(result.data)
+            const token = localStorage.setItem("token",result.data.token)
+            console.log("tokennnnnnnn = ",token);
+            alert('success logged in')
+            navigate("/dashboard")
+            })
+              .catch(error => {
+                alert('incorrect password')
+                console.log(error)
+              })
+          }
+    
 
     return (
         <div>
@@ -130,6 +133,10 @@ return result;
                 </button>
             </span>
         </nav>
+
+
+
+
         {
             modal && <div className="loginModal"> 
             
@@ -139,14 +146,13 @@ return result;
             <p>Already Have Account or <Link  onClick={handleModale}>Create Account</Link></p>
             <div className='inputController'>
             <label htmlFor="">Email</label>
-            <input type="text" placeholder='Email' value={email} onChange={(event)=> setEmail(event.target.value)}/>
+            <input type="text" placeholder='Email' value={email} onChange={handleEmail}/>
             </div>
             <div className='inputController'>
             <label htmlFor="">Password</label>
-            <input type="password" placeholder='Password' onChange={(event) => setPassword(event.target.value)}/>
+            <input type="password"  placeholder='Password' value={password} onChange={handlePassword}/>
             </div>
-            <Link onSubmit={handleSubmit}><input type="submit"  value="Login"/></Link>
-            
+           <input type="submit" onClick={handleApi} value="Login"/>
             </div>
             </div>
         }
@@ -159,8 +165,12 @@ return result;
             <h3>Create Account</h3>
             <p>Already Have Account<Link onClick={handleModale}> Login</Link></p>
             <div className='inputController'>
-            <label htmlFor="">Username</label>
-            <input type="text" required="required" placeholder='Username' value={first} onChange={(e) => setName(e.target.value)}  />
+            <label htmlFor="">FirstName</label>
+            <input type="text" required="required" placeholder='Firstname' value={first} onChange={(e) => setFirstname(e.target.value)}  />
+            </div>
+            <div className='inputController'>
+            <label htmlFor="">LastName</label>
+            <input type="text" required="required" placeholder='Lastname' value={lastname} onChange={(e) => setLastname(e.target.value)}  />
             </div>
             <div className='inputController'>
             <label htmlFor="">Email</label>
@@ -171,6 +181,7 @@ return result;
             <label htmlFor="">Password</label>
             <input type="password"placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}  />
             </div>
+            <input type="file" placeholder='Upload image' name='image' value={profile} onChange={(e) => setProfile(e.target.value)}/>
             <input type="submit" onClick={(e) => {
                 e.preventDefault()
                 handlesignup(FormData)
@@ -181,6 +192,8 @@ return result;
         }
         </div>         
     )
+
 }
+
 
 export default Navbar

@@ -5,11 +5,11 @@ import React from 'react'
 
 const Contact = () => {
     return (
-      <div>
+      <div className='Contact-all'>
        <Navbar />
        <div className="heroo">
        <h1>Contact<span> Us</span></h1>
-     </div><br></br><br></br>
+       </div><br></br><br></br>
       <div className="container-foo">
        <div className="form-contact">
        <h3>Get-In Touch</h3>

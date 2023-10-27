@@ -1,7 +1,9 @@
 import React from 'react'
 
 
-const Comment = ({name, image,description}) => {
+
+const Comment = ({name, image, description}) => {
+
   return (
     <div>
     <div className='comment-container'>

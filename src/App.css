@@ -97,8 +97,8 @@ span{
 .grid-container{
   background-color: aliceblue;
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  padding: 80px 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px 5px;
   gap: 15px;
   margin-top: 60px;
 }
@@ -111,10 +111,9 @@ span{
   align-items: baseline;
   gap: 0 5px;
   border-radius: 20px;
-  height: 500px;
   font-size: 12px;
   align-items: center;
-  padding: 80px 30px;
+  padding: 10px 10px;
 }
 .card-button
 {
@@ -122,9 +121,9 @@ justify-content: end;
 }
 
 .location-image{
-  height: 70%;
+  height: 250px;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 .mobile-menu{
   display: none
@@ -311,6 +310,7 @@ margin-top: 100px 0;
 .dashboard-content
 {
   width: 100%;
+  font-size: 14px;
 }
 
 .dashboard-container
@@ -405,7 +405,7 @@ text-align: center;
 
 
 @media screen and (max-width:568px) {
-  
+
   nav .desktop-menu
   {
     display: none;
@@ -433,7 +433,19 @@ text-align: center;
     top: 81px;
     background: rgb(0, 0, 0);
     color:#E5BE01 ;
-    padding: 20px;
+  
+  }
+ 
+  nav{
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 45px;
+    position: fixed;
+    top:0;
+    align-items: center;
   }
   .hidden
   {
@@ -442,7 +454,6 @@ text-align: center;
 
   .hero {
     background-color: rgb(0, 0, 0);
-    width: 100%;
     height: 30vh;
     /* position: absolute; */
     display: flex;
@@ -456,6 +467,7 @@ text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-left: 0px;
     margin-right: 0px;
+    width: 100%;
   }
     .welcome p
     {
@@ -488,7 +500,7 @@ text-align: center;
         text-align: center;
         justify-content: center;
         color: white;
-        font-size: 12px;
+        font-size: 9px;
         border-radius: 5px;
         margin-top: 4rem;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -504,7 +516,71 @@ text-align: center;
         {
         width: 90%;
         }
-    }
+        
+        .form p
+        {
+          font-size: 8px;
+          text-align: center;
+        }
+        .inputController
+        {
+          display: flex;
+          flex-direction: column;
+        }
+        .inputController input[type="text"] ,input[type="password"],input[type="submit"]
+        {
+          outline: none;
+          border: none;
+          border-radius: 10px;
+          align-items: center;
+          display: flex;
+        }
+        .form.login-link
+        {
+          width: 100%;
+          padding: 0.4rem 0.7rem;
+        }
+  
+.container-foo .form-contact,.inputController input[type="text"] ,input[type="password"],input[type="submit"]
+{
+margin-right: 100%;
+justify-content: center;
+
+}
+.contact-all{
+  width: 100%;
+  display: flex;
+}
+.form-contact{
+  background-color: #E5BE01;
+}
+.containing-card
+{
+display: grid;
+grid-template-columns: repeat(1,1fr);
+width: 100%;
+align-items: center;
+justify-content: center;
+display: flex;
+}
+.card1,.card2,.card3,.card4 {
+width: 100%;
+box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2);
+margin-right: 0px;
+margin-left: 25px;
+
+}
+.hero-dashboard
+{
+width: 100%;
+height: 45vh;
+}
+.container {
+  padding: 0px 0px;
+  display: flex;
+  display: list-item;
+}
+}
       
     
   
@@ -516,7 +592,7 @@ text-align: center;
     .grid-container
 
   {
-      grid-template-columns: auto auto ;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 15px;
   }
 
@@ -562,6 +638,19 @@ height: 100px;
    
    margin-bottom: 0;
 }
+.containing-card
+{
+display: grid;
+grid-template-columns: repeat(4,1fr);
+width: 100%;
+align-items: center;
+}
+.card1,.card2,.card3,.card4 {
+ 
+  margin-right: 0px;
+  margin-left: 25px;
+  
+  }
 
 }
 
@@ -571,6 +660,17 @@ height: 100px;
 /* login modal */
 .loginModal{
   width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 933;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.updateModal{
+  width:fit-content;
   height: 100vh;
   background-color: rgba(0,0,0,0.6);
   z-index: 933;
@@ -605,7 +705,7 @@ height: 100px;
   /* width: 500px; */
   margin: 0 auto;
   background-color: #bf9f11;
-  padding: 6rem 6rem;
+  padding: 6rem 2rem;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -779,10 +879,63 @@ gap: 20px;
   align-items: baseline;
   gap: 0 5px;
   border-radius: 20px;
-  height: 500px;
   font-size: 12px;
   align-items: center;
-  padding: 80px 30px;
+  padding: 10px 10px;
+}
+.views{
+width: 200px;
+height: 25px;
+font-size: 10px;
+border-radius: none;
+outline: none;
+   
+}
+.comment-list
+{
+display: flex;
+display: grid;
+grid-template-columns:repeat(1,1fr);
+color: rgb(0, 0, 0);
+background-color:#dbdbdb;
+justify-content: center;
+width: 100%;
+
+}
+.comment-image{
+  margin-left: 0px;
+}
+.card1,.card2,.card3,.card4 {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 270px;
+ border-radius: 20px;
+ display: flex;
+ align-items: center;
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+ text-align: center;
+
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 40px 60px;
+}
+.containing-card
+{
+display: grid;
+width: 100%;
+align-items: center;
+}
+
+.card-icon
+{
+font-size: 30px;
+margin-left: 90px;
+color: #efc611;
 }
 
 
