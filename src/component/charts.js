@@ -8,6 +8,10 @@ PointElement,
 LinearScale
 }
 from 'chart.js';
+import { useState, useEffect } from "react";
+
+
+const apiUrl ='https://blog-6hj4.onrender.com/api/post/select'
 
 ChartJS.register(
 LineElement,
@@ -17,15 +21,57 @@ PointElement
 )
 
 const Charts = () => {
-        const data = { 
-        labels: ['Users', 'Blogs', 'Locations', 'Views'],
+
+  const [data, setData] = useState({
+    userCount: 0,
+    postCount: 0,
+    viewCount: 0,
+    commentCount: 0,
+  });
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const posts = data.data;
+        const postsCount = posts.length;
+
+        let commentsCount = 0;
+        let viewsCount = 0;
+            // Loop through the posts to count comments and views
+            posts.forEach((post) => {
+              commentsCount += post.comments.length;
+              viewsCount += post.views;
+            });
+    
+            setData({
+              userCount: 0, // You need to set the user count based on your data
+              postCount: postsCount,
+              viewCount: viewsCount,
+              commentCount: commentsCount,
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }, []);
+
+
+
+
+
+
+
+
+        const dataa = { 
+        labels: ['Posts', 'Views', 'Comments'],
         datasets: [
           {
-            data: [100, 75, 50, 25],
+            data: [data.postCount, data.viewCount, data.commentCount],
             backgroundColor:'transparent',
             backColor: '#f2bc8d',
             pointBorderColor: 'transparent',
-            pointBorderwidth: 4,
+            pointBorderwidth: 2,
             tension: 0.5 
           }
         ]
@@ -59,7 +105,7 @@ const Charts = () => {
          
       return (
         <div style={{width: '100%', height: 'auto'}}>
-        <Line data={data} options={options}></Line>
+        <Line data={dataa} options={options}></Line>
         </div>
       );
     }

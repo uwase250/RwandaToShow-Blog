@@ -7,7 +7,7 @@ import axios from 'axios';
 import { LuView } from 'react-icons/lu';
 
 
-const Cardassh = ({Data, id}) =>
+const Cardassh = ({Data, id,}) =>
  
 {
 const blogId = Data._id
@@ -15,8 +15,8 @@ const views = Data.views
 id = blogId
 
 const [title, setTitle] = useState(Data.title); // State for the updated title
-  const [body, setBody] = useState(Data.content); // State for the updated body
-  const [image, setImage] = useState(null); // State for the updated image
+const [body, setBody] = useState(Data.content); // State for the updated body
+const [image, setImage] = useState(null); // State for the updated image
 
   
 const [modal, setModal] = useState(false);
@@ -82,18 +82,16 @@ const updateRecord = async (_id) => {
   formData.append('content', body);
   if (image) 
   {
-    formData.append('image', image);
+    formData.append('postImage', image);
   }
   try {
     const updateResponse = await axios.put(`https://blog-6hj4.onrender.com/api/post/update/${id}`,formData,
       {
-        method: "PUT",
-        body: JSON.stringify(formData),
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-type": "application/json; charset=UTF-8",
+          "Content-Type": "multipart/form-data",
         },
-      })
+      });
     if (updateResponse.status === 200) {
       alert('Data Updated Successfully');
       window.location.reload();
@@ -135,7 +133,7 @@ const updateRecord = async (_id) => {
         <label htmlFor="">Body</label>
         <input type="text" placeholder='post Body' value={body} onChange={handleBodyChange}/>
         </div>
-        <input type="file"  name='image' placeholder='Upload image' onChange={handleImageChange} accept="image/*"/>
+        <input type="file"  name="image" placeholder='Upload image' onChange={handleImageChange} accept="image/*"/>
         <button onClick={(e)=>{e.preventDefault();
           updateRecord(id)}}>Update</button>
         </div>

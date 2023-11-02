@@ -1,16 +1,53 @@
 import React from 'react'
 import Dnav from '../component/dash navbar'
 import Footer from '../component/footer'
-import { Link } from 'react-router-dom'
 import InnerDashMenu from '../component/InnerDashMenu'
-import Charts from '../component/charts'
 import {  FiUsers } from 'react-icons/fi'
 import {  MdOutlinePostAdd } from 'react-icons/md'
 import { LiaSearchLocationSolid } from 'react-icons/lia'
 import { LuView } from 'react-icons/lu'
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const apiUrl ='https://blog-6hj4.onrender.com/api/post/select'
 
 function Dashboard() {
-  
+
+
+  const [data, setData] = useState({
+    userCount: 0,
+    postCount: 0,
+    viewCount: 0,
+    commentCount: 0,
+  });
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        const posts = data.data;
+        const postsCount = posts.length;
+
+        let commentsCount = 0;
+        let viewsCount = 0;
+            // Loop through the posts to count comments and views
+            posts.forEach((post) => {
+              commentsCount += post.comments.length;
+              viewsCount += post.views;
+            });
+    
+            setData({
+              userCount: 0, // You need to set the user count based on your data
+              postCount: postsCount,
+              viewCount: viewsCount,
+              commentCount: commentsCount,
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }, []);
+    
   return (
     <div>
     <Dnav/>
@@ -30,34 +67,33 @@ function Dashboard() {
     <div className="card1">
     <div class="container">
       <FiUsers className='card-icon'/>
-      <h4><b>100+</b></h4> <br></br>
+      <h4><b>25+</b></h4> <br></br>
       <p>Users</p> 
     </div>
     </div>
     <div className="card2">
     <div class="container">
     <MdOutlinePostAdd className='card-icon'/>
-      <h4><b>200+</b></h4> <br></br>
-      <p>Blogs</p> 
+      <h4><b>{data.postCount}+</b></h4> <br></br>
+      <p>Posts</p> 
     </div>
 </div>
   <div className="card3">
   <div class="container">
   <LiaSearchLocationSolid className='card-icon'/>
-    <h4><b>300+</b></h4> <br></br>
-    <p>Locations</p> 
+    <h4><b>{data.commentCount}+</b></h4> <br></br>
+    <p>Comments</p> 
   </div>
 </div>
   <div class="card4">
   <div class="container">
   <LuView className='card-icon'/>
-    <h4><b>400+</b></h4> <br></br>
+    <h4><b>{data.viewCount}+</b></h4> <br></br>
     <p>Views</p> 
   </div>
 </div>
-</div>
-   <Charts/>
-   <Footer className='dashboard-footer'/>
+</div><br></br>
+   <Footer className='dashboard-footer'/><br></br>
     </div>
   )
 }

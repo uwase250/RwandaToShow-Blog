@@ -80,7 +80,7 @@ import Cardassh from '../component/card-dash';
     useEffect(() => {
     const fecthImage = async () => {
       const response = await axios.get(
-        'https://blog-6hj4.onrender.com/api/post/select'
+      'https://blog-6hj4.onrender.com/api/post/select'
       );
       const data = response.data.data;
       setBlog(data);

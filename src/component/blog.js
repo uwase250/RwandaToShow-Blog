@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../component/navbar'
 import Footer from '../component/footer'
-import Comment from '../component/comment'
 import { useParams } from 'react-router-dom';
 
 
@@ -59,26 +58,7 @@ const Blog = () => {
 
 
 
-  const commenting = [
-    {
-        name: 'Chateau Le Marara',
-        image: 'https://images.unsplash.com/photo-1568871771767-df8f8f580403?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
-        description: 'This card is just for testing i will add more description ',
-       
-    },
-    {
-        name: 'Hotel Les Milles Colline',
-        image: 'https://images.unsplash.com/photo-1538683270504-3d09ad7ae739?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-        description: 'This card is just for testing i will add more description ',
-       
-    },
-    {
-        name: 'Nyungwe Forest',
-        image: 'https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        description: 'This card is just for testing i will add more description ',
-    },
-
-]
+ 
 
 
  
@@ -147,7 +127,6 @@ const handleCommentSubmit = async () => {
   return (
    <div>
    <Navbar />
-
    <section className='blog-section'>
    <div className='readmore-text'>
    <h1>{blogData.title}</h1><br></br>
@@ -155,40 +134,43 @@ const handleCommentSubmit = async () => {
    <p>{blogData.content}</p><br></br>
    </div>
 </section>
+<div className="comment-section">
+<h3>-----ADD COMMENT HERE-----</h3><br></br>
+      <div className="comment-form">
+        <input
+          type="text"
+          value={first}
+          onChange={handleNameChange}
+          placeholder="Your First Name"
+          className="comment-input"
+        />
+        <input
+          type="text"
+          value={newComment}
+          onChange={handleCommentChange}
+          placeholder="Add Your Comment..."
+          className="comment-input"
+        />
+        <button onClick={handleCommentSubmit} className="comment-button">
+          Comment
+        </button>
+      </div>
 
- <div className="comment-form">
- <input
-   type="text"
-   value={first}
-   onChange={handleNameChange}
-   placeholder="Your Name"
-   className="comment-input"
- />
- <input
-   type="text"
-   value={newComment}
-   onChange={handleCommentChange}
-   placeholder="Add your comment..."
-   className="comment-input"
- />
- <button onClick={handleCommentSubmit} className="comment-button">
-   Comment
- </button>
-</div>
-
-<div className="comments">
- <h3>Comments</h3>
- <ul className="comment-list">
-   {comments.map((comment, index) => (
-    <li key={index}>
-    <img src={ comment.author.profile} className='comment-image'/>
-    <h4>{comment.author.first}:</h4> 
-    <p className='comment-paragraph'>{comment.content} </p>
-     </li>
-     ))}
-    </ul>
-
-    {error && <p className="error-message">{error}</p>}
+      <div className="comments">
+        <h4>Comments</h4>
+        <ul className="comment-list">
+          {comments.map((comment, index) => (
+            <li key={index} className="comment-item">
+              <img src={comment.author.profile} alt={comment.author.first} className="comment-image" />
+              <div className="comment-content">
+                <h4 className="comment-author">{comment.author.first}</h4>
+                <p className="comment-paragraph">{comment.content}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {error && <p className="error-message">{error}</p>}
+      </div>
     </div>
     <div><Footer></Footer></div>
     </div>
@@ -197,3 +179,24 @@ const handleCommentSubmit = async () => {
 
 }
 export default Blog;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+

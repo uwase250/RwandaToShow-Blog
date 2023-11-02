@@ -70,6 +70,9 @@ const InnerDashMenu = () => {
           <Link to="/manageblog" className="ddd">
             Manage Blog
           </Link>
+          <Link to="/analytics" className="ddd">
+          Analytics
+        </Link>
         </ul>
       </div>
 
