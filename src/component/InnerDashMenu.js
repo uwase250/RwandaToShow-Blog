@@ -58,10 +58,10 @@ const InnerDashMenu = () => {
           <Link onClick={handleModal} className="ddd">
             Add New Blog
           </Link>
-          <Link to="/manageblog" className="ddd">
+          <Link to="/dashboard/manageblog" className="ddd">
             Manage Blog
           </Link>
-          <Link to="/analytics" className="ddd">
+          <Link to="/dashboard/analytics" className="ddd">
             Analytics
           </Link>
         </ul>
