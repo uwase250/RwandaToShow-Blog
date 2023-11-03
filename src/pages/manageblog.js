@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Dnav from '../component/dash navbar'
 import Footer from '../component/footer'
-import { Link } from 'react-router-dom'
 import InnerDashMenu from '../component/InnerDashMenu'
 import axios from 'axios'
 import Cardassh from '../component/card-dash';
@@ -105,6 +104,5 @@ import Cardassh from '../component/card-dash';
   )
   
 }
-
 
 export default Manageblog;

@@ -104,9 +104,7 @@ const updateRecord = async (_id) => {
   }
 };
 
-
   return (
-    
     <div>
     <div className='carddash' id={Data._id} Data={Data}>
       <img src={Data.postImage} alt="" className='location-image'/>
@@ -119,11 +117,9 @@ const updateRecord = async (_id) => {
       deleteRecord(id)}}>Delete</Link>
       </div>
       </div>
-    
-
+  
     {modal && (
         <div className="updateModal"> 
-      
         <div className="form" id={Data._id} Data={Data}>
         <button onClick={handleModal} className="close"><AiOutlineClose className='iconx'/></button>
         <h3>Update Blog</h3>

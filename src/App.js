@@ -8,7 +8,6 @@ import Home from './pages/home';
 import Blog from './component/blog';
 import CreateAcc from './pages/createAcc';
 import Dashboard from './pages/dashboard';
-import Addnewblog from './pages/addnewblog';
 import Manageblog from './pages/manageblog';
 import Analytics from './pages/analytics';
 
@@ -22,8 +21,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>    
         <Route path='/blog/:_id' element={<Blog/>}/> 
         <Route path='/createAcc' element={<CreateAcc/>}/>  
-        <Route path='/dashboard' element={<Dashboard/>}/> 
-        <Route path='/addnewblog' element={<Addnewblog/>}/> 
+        <Route path='/dashboard' element={<Dashboard/>} exact/>  
         <Route path='/manageblog' element={<Manageblog/>}/> 
         <Route path='/analytics' element={<Analytics/>}/> 
       </Routes>

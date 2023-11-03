@@ -107,8 +107,6 @@ const Navbar = () => {
 
     return (
         <div>
-        
-        
         <nav>
             <h3>RwandaToShow</h3>
             <ul className='desktop-menu'>

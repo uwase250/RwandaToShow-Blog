@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 
 
 const Dnav = () => {
-
-    
     const [mobileMenuOpen, setMobileMenuOpen] = useState(true)
     console.log("MENU OPEN", mobileMenuOpen)
     return (
@@ -25,7 +23,6 @@ const Dnav = () => {
 
                         
             </ul>
-
             <ul className={`mobile-menu ${mobileMenuOpen === false?' hidden':''}`}>
                 <Link to="/">Home</Link>
                 <Link to="/about">About Us</Link>
