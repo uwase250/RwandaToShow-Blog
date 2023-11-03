@@ -49,7 +49,7 @@ function Dashboard() {
       }, []);
     
   return (
-    <div>
+    <div className='dash-dash-dash'>
     <Dnav/>
     <div className="hero-dashboard">
        <h3>Manage<span> Your Blog</span> | Dashboard</h3>
@@ -93,7 +93,7 @@ function Dashboard() {
   </div>
 </div>
 </div><br></br>
-   <Footer className='dashboard-footer'/><br></br>
+   <Footer className='dashboard-footer'/>
     </div>
   )
 }

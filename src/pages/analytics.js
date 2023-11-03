@@ -43,13 +43,12 @@ function Analytics() {
      </div>
      <InnerDashMenu/>
 <div className='dashboard-charts'>
-<div style={{ width: '600px', height: '300px', marginTop: '1rem' }}>
-     <Charts />
+<div style={{ width: '50%', height: 'auto' }}>
+<Charts />
 </div>
      
-<div style={{ width: '600px', height: '300px', marginTop: '1rem' }}>
-    
-<BarChart width={600} height={300} data={data}>
+<div style={{ width: '50%', height: 'auto'}}>
+<BarChart width={400} height={180} data={data}>
           <XAxis dataKey="name" stroke="black" />
           <YAxis />
           <Tooltip />
@@ -58,7 +57,7 @@ function Analytics() {
 </BarChart>  
 </div>
 
-<div style={{ width: '600px', height: '300px', marginTop: '2rem' }}>
+<div style={{ width: '50%', height: 'auto' }}>
 <PChart />
 </div>
 </div>

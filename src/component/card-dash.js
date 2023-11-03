@@ -106,6 +106,7 @@ const updateRecord = async (_id) => {
 
 
   return (
+    
     <div>
     <div className='carddash' id={Data._id} Data={Data}>
       <img src={Data.postImage} alt="" className='location-image'/>
@@ -115,12 +116,13 @@ const updateRecord = async (_id) => {
       <button className='views'><LuView/> Views: {Data.views}</button>
       <Link onClick={handleModal}>Update</Link>
       <Link onClick={(e)=>{e.preventDefault();
-        deleteRecord(id)}}>Delete</Link>
+      deleteRecord(id)}}>Delete</Link>
       </div>
-    </div>
-  
-    {
-        modal && <div className="updateModal"> 
+      </div>
+    
+
+    {modal && (
+        <div className="updateModal"> 
       
         <div className="form" id={Data._id} Data={Data}>
         <button onClick={handleModal} className="close"><AiOutlineClose className='iconx'/></button>
@@ -138,6 +140,7 @@ const updateRecord = async (_id) => {
           updateRecord(id)}}>Update</button>
         </div>
         </div>
+    )
     }
     </div>
   )
